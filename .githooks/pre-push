@@ -1,0 +1,24 @@
+#!/bin/sh
+# Pre-push hook to ensure VS Code workspace files are sorted.
+
+if [ ! -f ".vscode/settings.json" ] && [ ! -f ".vscode/extensions.json" ] && ! ls .vscode/*-words.txt >/dev/null 2>&1; then
+    exit 0
+fi
+
+if ! command -v pwsh > /dev/null 2>&1; then
+    echo ""
+    echo "Push blocked: pwsh is required to validate sorted VS Code workspace files"
+    echo "Install PowerShell 7+ or run the sort/check from a shell where pwsh is available"
+    echo ""
+    exit 1
+fi
+
+if ! pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/settings-sort.ps1 -CheckOnly; then
+    echo ""
+    echo "Push blocked: VS Code workspace files are not sorted"
+    echo "Run: pwsh ./scripts/settings-sort.ps1"
+    echo ""
+    exit 1
+fi
+
+exit 0
