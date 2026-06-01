@@ -1,41 +1,58 @@
-# Work Template Docs
+# TF-1 Intraday Trade Fails Workflow and Dashboard
 
-This repository is a reusable template for documentation-first projects.
+This repository contains documentation artifacts for the TF-1 initiative at
+Cantor Fitzgerald, focused on intraday monitoring and operational visibility
+of settlement obligation fails.
 
-Use it as a starting point for collecting vendor documentation, internal notes,
-and operational references for the software or service being documented.
+## Purpose
 
-## Structure
+TF-1 provides advisory visibility and prioritization support for operations users during the settlement day.
 
-| Folder | Purpose |
-| ------ | ------- |
-| [docs/](docs/) | Documentation index for the docs area and subfolders |
-| [docs/vendor/](docs/vendor/) | Vendor-supplied documentation, manuals, and reference material |
-| [docs/internal/](docs/internal/) | Internal notes, decisions, and meeting records |
+TF-1 does not:
+
+- Initiate settlement transactions
+- Execute stock borrowing
+- Send automated external communications
+- Override upstream systems of record
+
+## Primary Source Document
+
+The baseline functional behavior is defined in:
+
+- [docs/vendor/Functional Specification – TF-1. Intraday Trade Fails Workflow and Dashboard v1.0.docx](docs/vendor/Functional%20Specification%20%E2%80%93%20TF-1.%20Intraday%20Trade%20Fails%20Workflow%20and%20Dashboard%20v1.0.docx)
+
+Use this document as the authoritative reference for scope, behavior, and testing expectations.
+
+## Documentation Layout
+
+| Path | Purpose |
+| --- | --- |
+| [docs/](docs/) | Documentation index and high-level structure |
+| [docs/vendor/](docs/vendor/) | Vendor-provided source artifacts and functional specifications |
+| [docs/internal/](docs/internal/) | Team-authored notes, implementation interpretations, and working documents |
 | [images/](images/) | Supporting screenshots and diagrams |
 
-## Tooling
+## Functional Areas Covered
 
-| File/Folder | Purpose |
-| ----------- | ------- |
-| [.githooks/](.githooks/) | Git hook scripts used for pre-commit and pre-push validation |
-| [scripts/](scripts/) | Utility scripts used by hooks (settings/extensions/word-list sorting) |
-| [.markdownlint.yaml](.markdownlint.yaml) | Shared markdownlint rule configuration used by the pre-commit hook |
-| [Makefile](Makefile) | Optional shortcuts for hook setup, sorting, and docs linting |
+- Intraday monitoring population and fail identification
+- Active or Closed fail record lifecycle behavior
+- Derived settlement condition and carry-fail handling
+- Data availability rules for settlement, RAD, position, and pricing
+- Exposure calculation and ordering logic for dashboard views
+- User handling status and notes behavior at obligation level
+- Dashboard view behavior for Box Exposure and RAD Exceptions
+- Auditability, traceability, assumptions, and dependencies
 
-## Quick Start
+## Working Model
 
-```bash
-make install-hooks
-make settings-sort
-make lint-docs
-```
+- Keep vendor documents as source artifacts in [docs/vendor/](docs/vendor/)
+- Capture internal interpretation and delivery notes in [docs/internal/](docs/internal/)
+- Keep this repository documentation-first and aligned to the latest approved spec version
 
-## Repository Customization Checklist
+## Local Documentation Checks
 
-1. Replace this README with project-specific context.
-2. Add or update files in [docs/vendor/](docs/vendor/) and [docs/internal/](docs/internal/).
-3. Add screenshots/diagrams under [images/](images/).
-4. Update [.vscode/extensions.json](.vscode/extensions.json) recommendations if needed.
-5. Add project-specific words to `*-words.txt` files in [.vscode/](.vscode/).
-6. Register each new word list under `cSpell.customDictionaries` in [.vscode/settings.json](.vscode/settings.json).
+Use the repository tooling to keep markdown and settings aligned:
+
+1. make install-hooks
+2. make settings-sort
+3. make lint-docs
