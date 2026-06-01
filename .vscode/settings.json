@@ -25,6 +25,13 @@
   "cSpell.autocorrect": false,
   "cSpell.caseSensitive": true,
   "cSpell.customDictionaries": {
+    "fails-project-words": {
+      "addWords": true,
+      "description": "TF-1 project-specific accepted words",
+      "name": "fails-project-words",
+      "path": "${workspaceFolder}/.vscode/fails-project-words.txt",
+      "scope": "workspace"
+    },
     "generic-project-words": {
       "addWords": true,
       "description": "Project-specific accepted words",
